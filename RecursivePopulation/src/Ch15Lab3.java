@@ -6,13 +6,27 @@ import java.util.Scanner;
  */
 public class Ch15Lab3 {
 
-	public static void main(String[] args) {
-		String input; // To hold keyboard input
+	/**
+	 * The displayPopulation method displays the* population table header and then
+	 * calls the recursive show Population method to display the daily populations.
+	 *
+	 * @param startingOrganisms The number of starting organisms in the population.
+	 * @param increase          The daily increase percentage.
+	 * @param days              The number of days the organisms will be left to
+	 *                          multiply.
+	 */
+	public static void displayPopulation(final double startingOrganisms, final double increase, final int days) {
+		System.out.println("Day\t\tOrganisms");
+		System.out.println("-----------------------------");
+		Ch15Lab3.showPopulation(1, days, startingOrganisms, increase);
+	}
+
+	public static void main(final String[] args) {
 		double starting; // Starting number of organisms
 		double increase; // Daily increase percentage
 		int days; // Number of days to multiply
 		// Create a Scanner object for keyboard input.
-		Scanner keyboard = new Scanner(System.in);
+		final var keyboard = new Scanner(System.in);
 		// Get the starting number of organisms.
 		System.out.print("Enter the starting number " + "organisms: ");
 		starting = keyboard.nextDouble();
@@ -39,42 +53,26 @@ public class Ch15Lab3 {
 		}
 		keyboard.close();
 		// Calculate and display the daily population.
-		displayPopulation(starting, increase, days);
-	}
-
-	/**
-	 * The displayPopulation method displays the* population table header and then
-	 * calls the recursive show Population method to display the daily populations.
-	 * 
-	 * @param startingOrganisms The number of starting organisms in the population.
-	 * @param increase          The daily increase percentage.
-	 * @param days              The number of days the organisms will be left to
-	 *                          multiply.
-	 */
-	public static void displayPopulation(double startingOrganisms, double increase, int days) {
-		double organisms = startingOrganisms;
-		System.out.println("Day\t\tOrganisms");
-		System.out.println("-----------------------------");
-		showPopulation(1, days, startingOrganisms, increase);
+		Ch15Lab3.displayPopulation(starting, increase, days);
 	}
 
 	/**
 	 * The showPopulation method displays the daily populations for a group of
 	 * organisms for a specified day, and then calls itself to display the data for
 	 * the rest of the days in a time period.
-	 * 
+	 *
 	 * @param dayNum        The day number.
 	 * @param days          The number of days in the time period.
 	 * @param organisms     The current number of organisms.
 	 * @param dailyIncrease The daily increase percentage.
 	 */
-	private static void showPopulation(int dayNum, int days, double organisms, double dailyIncrease) {
+	private static void showPopulation(final int dayNum, final int days, double organisms, final double dailyIncrease) {
 		if (dayNum < days) {
 			System.out.println(dayNum + "\t\t" + organisms);
-			organisms += (organisms * dailyIncrease);
-			showPopulation(dayNum + 1, days, organisms, dailyIncrease);
-		}
-		else
+			organisms += organisms * dailyIncrease;
+			Ch15Lab3.showPopulation(dayNum + 1, days, organisms, dailyIncrease);
+		} else {
 			System.out.println(dayNum + "\t\t" + organisms);
+		}
 	}
 }
