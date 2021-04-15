@@ -22,38 +22,42 @@ public class Ch15Lab3 {
 	}
 
 	public static void main(final String[] args) {
-		double starting; // Starting number of organisms
-		double increase; // Daily increase percentage
-		int days; // Number of days to multiply
-		// Create a Scanner object for keyboard input.
 		final var keyboard = new Scanner(System.in);
-		// Get the starting number of organisms.
-		System.out.print("Enter the starting number " + "organisms: ");
-		starting = keyboard.nextDouble();
-		// Validate the input.
-		while (starting < 2) {
-			System.out.print("Invalid. Must be at least 2. " + "Re-enter: ");
-			starting = keyboard.nextDouble();
-		}
-		// Get the daily increase.
-		System.out.print("Enter the daily increase: ");
-		increase = keyboard.nextDouble();
-		// Validate the input.
-		while (increase < 0) {
-			System.out.print("Invalid. Enter a non-negative number: ");
-			increase = keyboard.nextDouble();
-		}
-		// Get the number of days to multiply.
+		Ch15Lab3.displayPopulation(startingNumber(keyboard), dailyIncrease(keyboard), days(keyboard));
+		keyboard.close();
+	}
+
+	private static int days(final Scanner keyboard) {
 		System.out.print("Enter the number of days the organisms will multiply: ");
-		days = keyboard.nextInt();
+		int days = keyboard.nextInt();
 		// Validate the input.
 		while (days < 1) {
 			System.out.print("Invalid. Enter 1 or more: ");
 			days = keyboard.nextInt();
 		}
-		keyboard.close();
-		// Calculate and display the daily population.
-		Ch15Lab3.displayPopulation(starting, increase, days);
+		return days;
+	}
+
+	private static double dailyIncrease(final Scanner keyboard) {
+		System.out.print("Enter the daily increase: ");
+		double increase = keyboard.nextDouble();
+		// Validate the input.
+		while (increase < 0) {
+			System.out.print("Invalid. Enter a non-negative number: ");
+			increase = keyboard.nextDouble();
+		}
+		return increase;
+	}
+
+	private static double startingNumber(final Scanner keyboard) {
+		System.out.print("Enter the starting number " + "organisms: ");
+		double starting = keyboard.nextDouble();
+		// Validate the input.
+		while (starting < 2) {
+			System.out.print("Invalid. Must be at least 2. " + "Re-enter: ");
+			starting = keyboard.nextDouble();
+		}
+		return starting;
 	}
 
 	/**
