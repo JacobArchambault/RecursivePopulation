@@ -4,7 +4,7 @@ import java.util.Scanner;
  * This program demonstrates a solution to the* Recursive Population Class
  * programming challenge.
  */
-public class Ch15Lab3 {
+public class App {
 
 	/**
 	 * The displayPopulation method displays the* population table header and then
@@ -18,12 +18,12 @@ public class Ch15Lab3 {
 	public static void displayPopulation(final double startingOrganisms, final double increase, final int days) {
 		System.out.println("Day\t\tOrganisms");
 		System.out.println("-----------------------------");
-		Ch15Lab3.showPopulation(1, days, startingOrganisms, increase);
+		App.showPopulation(1, days, startingOrganisms, increase);
 	}
 
 	public static void main(final String[] args) {
 		final var keyboard = new Scanner(System.in);
-		Ch15Lab3.displayPopulation(startingNumber(keyboard), dailyIncrease(keyboard), days(keyboard));
+		App.displayPopulation(startingNumber(keyboard), dailyIncrease(keyboard), days(keyboard));
 		keyboard.close();
 	}
 
@@ -74,7 +74,7 @@ public class Ch15Lab3 {
 		if (dayNum < days) {
 			System.out.println(dayNum + "\t\t" + organisms);
 			organisms += organisms * dailyIncrease;
-			Ch15Lab3.showPopulation(dayNum + 1, days, organisms, dailyIncrease);
+			App.showPopulation(dayNum + 1, days, organisms, dailyIncrease);
 		} else {
 			System.out.println(dayNum + "\t\t" + organisms);
 		}
