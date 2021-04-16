@@ -17,5 +17,4 @@ public class Prompt {
 		}
 		return starting;
 	}
-
 }
