@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class Population {
 
-	Scanner scanner;
+	Scanner keyboard;
 
-	Population(Scanner scanner) {
-		this.scanner = scanner;
+	Population(Scanner keyboard) {
+		this.keyboard = keyboard;
 	}
 
 	/**
@@ -23,7 +23,7 @@ public class Population {
 		Population.showPopulation(1, days, startingOrganisms, increase);
 	}
 
-	static int days(final Scanner keyboard) {
+	int days() {
 		System.out.print("Enter the number of days the organisms will multiply: ");
 		int days = keyboard.nextInt();
 		// Validate the input.
@@ -34,7 +34,7 @@ public class Population {
 		return days;
 	}
 
-	static double dailyIncrease(final Scanner keyboard) {
+	double dailyIncrease() {
 		System.out.print("Enter the daily increase: ");
 		double increase = keyboard.nextDouble();
 		// Validate the input.
@@ -45,7 +45,7 @@ public class Population {
 		return increase;
 	}
 
-	static double startingNumber(final Scanner keyboard) {
+	double startingNumber() {
 		System.out.print("Enter the starting number " + "organisms: ");
 		double starting = keyboard.nextDouble();
 		// Validate the input.

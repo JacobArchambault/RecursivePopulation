@@ -6,10 +6,10 @@ import java.util.Scanner;
  */
 public class App {
 
-
 	public static void main(final String[] args) {
+		var population = new Population(new Scanner(System.in));
 		final var keyboard = new Scanner(System.in);
-		Population.displayPopulation(Population.startingNumber(keyboard), Population.dailyIncrease(keyboard), Population.days(keyboard));
+		Population.displayPopulation(population.startingNumber(), population.dailyIncrease(), population.days());
 		keyboard.close();
 	}
 
