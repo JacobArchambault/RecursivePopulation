@@ -1,11 +1,11 @@
 
 public class Population {
 
-	private static void showPopulation(final int dayNum, final double days, double organisms,
+	private static void printRows(final int dayNum, final double days, double organisms,
 			final double dailyIncrease) {
 		System.out.println(dayNum + "\t\t" + organisms);
 		if (dayNum < days) {
-			Population.showPopulation(dayNum + 1, days, organisms + (organisms * dailyIncrease), dailyIncrease);
+			Population.printRows(dayNum + 1, days, organisms + (organisms * dailyIncrease), dailyIncrease);
 		}
 	}
 
@@ -30,7 +30,7 @@ public class Population {
 		var dailyIncrease = dailyIncrease();
 		System.out.println("Day\t\tOrganisms");
 		System.out.println("-----------------------------");
-		Population.showPopulation(1, days, startingNumberOfOrganisms, dailyIncrease);
+		Population.printRows(1, days, startingNumberOfOrganisms, dailyIncrease);
 	}
 
 	private double startingNumberOfOrganisms() {
