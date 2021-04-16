@@ -17,40 +17,30 @@ public class Population {
 	 * @param days              The number of days the organisms will be left to
 	 *                          multiply.
 	 */
-	public static void displayPopulation(final double startingOrganisms, final double increase, final int days) {
+	public static void displayPopulation(final double startingOrganisms, final double increase, final double days) {
 		System.out.println("Day\t\tOrganisms");
 		System.out.println("-----------------------------");
 		Population.showPopulation(1, days, startingOrganisms, increase);
 	}
 
-	int days() {
-		System.out.print("Enter the number of days the organisms will multiply: ");
-		int days = keyboard.nextInt();
-		// Validate the input.
-		while (days < 1) {
-			System.out.print("Invalid. Enter 1 or more: ");
-			days = keyboard.nextInt();
-		}
-		return days;
+	double days() {
+		return whilePrompt("Enter the number of days the organisms will multiply", "Invalid. Enter 1 or more", 1);
 	}
 
 	double dailyIncrease() {
-		System.out.print("Enter the daily increase: ");
-		double increase = keyboard.nextDouble();
-		// Validate the input.
-		while (increase < 0) {
-			System.out.print("Invalid. Enter a non-negative number: ");
-			increase = keyboard.nextDouble();
-		}
-		return increase;
+		return whilePrompt("Enter the daily percentage increase: ", "Invalid. Enter a non-negative number", 0);
 	}
 
 	double startingNumber() {
-		System.out.print("Enter the starting number " + "organisms: ");
+		return whilePrompt("Enter the starting number of organisms: ", "Invalid. Must be at least 2. Re-enter: ", 2);
+	}
+
+	double whilePrompt(String initialPrompt, String errorPrompt, double minValue) {
+		System.out.print(initialPrompt);
 		double starting = keyboard.nextDouble();
 		// Validate the input.
-		while (starting < 2) {
-			System.out.print("Invalid. Must be at least 2. " + "Re-enter: ");
+		while (starting < minValue) {
+			System.out.print(errorPrompt);
 			starting = keyboard.nextDouble();
 		}
 		return starting;
@@ -66,7 +56,7 @@ public class Population {
 	 * @param organisms     The current number of organisms.
 	 * @param dailyIncrease The daily increase percentage.
 	 */
-	private static void showPopulation(final int dayNum, final int days, double organisms, final double dailyIncrease) {
+	private static void showPopulation(final int dayNum, final double days, double organisms, final double dailyIncrease) {
 		if (dayNum < days) {
 			System.out.println(dayNum + "\t\t" + organisms);
 			organisms += organisms * dailyIncrease;
