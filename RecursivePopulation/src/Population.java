@@ -1,41 +1,6 @@
 
 public class Population {
 
-	Prompt prompt;
-
-	Population(Prompt prompt) {
-		this.prompt = prompt;
-	}
-
-	/**
-	 * The displayPopulation method displays the* population table header and then
-	 * calls the recursive show Population method to display the daily populations.
-	 *
-	 * @param startingOrganisms The number of starting organisms in the population.
-	 * @param increase          The daily increase percentage.
-	 * @param days              The number of days the organisms will be left to
-	 *                          multiply.
-	 */
-	public static void displayPopulation(final double startingOrganisms, final double increase, final double days) {
-		System.out.println("Day\t\tOrganisms");
-		System.out.println("-----------------------------");
-		Population.showPopulation(1, days, startingOrganisms, increase);
-	}
-
-	double days() {
-		return prompt.forDouble("Enter the number of days the organisms will multiply", "Invalid. Enter 1 or more: ",
-				1);
-	}
-
-	double dailyIncrease() {
-		return prompt.forDouble("Enter the daily percentage increase: ", "Invalid. Enter a non-negative number: ", 0);
-	}
-
-	double startingNumber() {
-		return prompt.forDouble("Enter the starting number of organisms: ", "Invalid. Must be at least 2. Re-enter: ",
-				2);
-	}
-
 	/**
 	 * The showPopulation method displays the daily populations for a group of
 	 * organisms for a specified day, and then calls itself to display the data for
@@ -55,6 +20,41 @@ public class Population {
 		} else {
 			System.out.println(dayNum + "\t\t" + organisms);
 		}
+	}
+
+	Prompt prompt;
+
+	Population(final Prompt prompt) {
+		this.prompt = prompt;
+	}
+
+	private double dailyIncrease() {
+		return prompt.forDouble("Enter the daily percentage increase: ", "Invalid. Enter a non-negative number: ", 0);
+	}
+
+	private double days() {
+		return prompt.forDouble("Enter the number of days the organisms will multiply", "Invalid. Enter 1 or more: ",
+				1);
+	}
+
+	/**
+	 * The displayPopulation method displays the* population table header and then
+	 * calls the recursive show Population method to display the daily populations.
+	 *
+	 * @param startingOrganisms The number of starting organisms in the population.
+	 * @param increase          The daily increase percentage.
+	 * @param days              The number of days the organisms will be left to
+	 *                          multiply.
+	 */
+	public void display() {
+		System.out.println("Day\t\tOrganisms");
+		System.out.println("-----------------------------");
+		Population.showPopulation(1, startingNumber(), dailyIncrease(), days());
+	}
+
+	private double startingNumber() {
+		return prompt.forDouble("Enter the starting number of organisms: ", "Invalid. Must be at least 2. Re-enter: ",
+				2);
 	}
 
 }

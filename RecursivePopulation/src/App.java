@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class App {
 
 	public static void main(final String[] args) {
-		var population = new Population(new Prompt(new Scanner(System.in)));
-		Population.displayPopulation(population.startingNumber(), population.dailyIncrease(), population.days());
+		new Population(new Prompt(new Scanner(System.in))).display();
 	}
 
 }
